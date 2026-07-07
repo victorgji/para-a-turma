@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HTML5: Estrutura Básica e Tags</title>
+        <link rel="stylesheet" href="../css/linguagens.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>HTML5: Estrutura Básica e Tags</h1>
+        </header>
+
+        <main>
+
+            <section>
+                <h2>Estrutura Básica</h2>
+                <hr>
+                <h3><strong>html</strong></h3>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Título da Página&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;!-- você sabe o que vem aqui --&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>1. Estrutura Básica e Metadados</h2>
+                <ul>
+                    <li>
+                        <code>&lt;!DOCTYPE html&gt;</code>: Declaração obrigatória que avisa o navegador que a página utiliza a versão mais recente do HTML (HTML5).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;html&gt;</code>: A tag raiz que envolve todo o conteúdo da página. O atributo lang="pt-br" define o idioma principal.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;html lang="pt-br"&gt;
+  &lt;!-- Todo o conteúdo do site entra aqui --&gt;
+&lt;/html&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;head&gt;</code>: Contêiner que guarda os metadados (informações sobre o documento) que não aparecem diretamente para o usuário.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Configurações Internas&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;title&gt;</code>: Define o título da página que aparece na aba do navegador e nos resultados de busca.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;title&gt;Meu Portfólio | Home&lt;/title&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;meta&gt;</code>: Define metadados como codificação de caracteres (charset="UTF-8"), configurações de viewport para responsividade, autor e descrição.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="description" content="Guia completo de tags HTML5"&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;link&gt;</code>: Usada para conectar o documento a recursos externos, mais frequentemente folhas de estilo CSS (.css) ou favicons.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;link rel="icon" href="favicon.ico" type="image/x-icon"&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;style&gt;</code>: Permite inserir regras de estilo CSS diretamente dentro do documento HTML.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;style&gt;
+  body { background-color: #fafafa; color: #333; }
+&lt;/style&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;script&gt;</code>: Usada para incorporar ou referenciar códigos JavaScript externos ou internos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;script&gt;
+  console.log('Código interno rodando!');
+&lt;/script&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;noscript&gt;</code>: Define um conteúdo alternativo para ser exibido caso o navegador do usuário esteja com o JavaScript desativado.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;noscript&gt;
+  &lt;p&gt;Este site precisa de JavaScript para funcionar corretamente.&lt;/p&gt;
+&lt;/noscript&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;body&gt;</code>: Contém todo o conteúdo visível da página (textos, imagens, links, vídeos, etc.).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;body&gt;
+  &lt;h1&gt;Conteúdo Visível da Página&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>2. Estrutura Semântica de Layout</h2>
+                <ul>
+                    <li>
+                        <code>&lt;header&gt;</code>: Define o cabeçalho de uma página ou de uma seção específica. Geralmente contém logos e menus de navegação.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;header&gt;
+  &lt;img src="logo.png" alt="Logo da Empresa"&gt;
+  &lt;h1&gt;Nome do Site&lt;/h1&gt;
+&lt;/header&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;nav&gt;</code>: Bloco que agrupa links de navegação principal do site.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;nav&gt;
+  &lt;a href="home.html"&gt;Home&lt;/a&gt; | 
+  &lt;a href="sobre.html"&gt;Sobre&lt;/a&gt; | 
+  &lt;a href="contato.html"&gt;Contato&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;main&gt;</code>: Define o conteúdo principal e exclusivo da página. Só deve existir um por página.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;main&gt;
+  &lt;h2&gt;Seção Principal do Artigo&lt;/h2&gt;
+  &lt;p&gt;Conteúdo exclusivo desta URL.&lt;/p&gt;
+&lt;/main&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;article&gt;</code>: Representa um conteúdo autônomo e independente que faz sentido por si só (ex: um post de blog, uma notícia).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;article&gt;
+  &lt;h2&gt;Novidades do HTML5&lt;/h2&gt;
+  &lt;p&gt;Postado por João em 2026. O HTML5 trouxe melhorias...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;section&gt;</code>: Define uma seção genérica de conteúdo temático dentro de uma página.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;section&gt;
+  &lt;h3&gt;Nossos Serviços&lt;/h3&gt;
+  &lt;p&gt;Oferecemos desenvolvimento web completo.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;aside&gt;</code>: Define um conteúdo tangencial ou secundário (como barras laterais, anúncios ou caixas de curiosidades).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;aside&gt;
+  &lt;h4&gt;Anúncios Relacionados&lt;/h4&gt;
+  &lt;p&gt;Confira nossa loja de hospedagem!&lt;/p&gt;
+&lt;/aside&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;footer&gt;</code>: Define o rodapé de uma página ou de uma seção (geralmente contém direitos autorais e contatos).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;footer&gt;
+  &lt;p&gt;&amp;copy; 2026 Todos os direitos reservados.&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;address&gt;</code>: Fornece informações de contato para a pessoa ou organização dona do site ou do artigo.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;address&gt;
+  E-mail: &lt;a href="mailto:suporte@site.com"&gt;suporte@site.com&lt;/a&gt;&lt;br&gt;
+  Rua Central, nº 100 - Centro
+&lt;/address&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>3. Conteúdo Textual e Organização</h2>
+                <ul>
+                    <li>
+                        <code>&lt;div&gt;</code>: Um contêiner genérico em bloco (block-level) usado para agrupar elementos para fins de estilização (CSS) ou script. Não tem significado semântico.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;div class="card-box"&gt;
+  &lt;p&gt;Texto dentro de uma caixa estrutural genérica.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;span&gt;</code>: Um contêiner genérico em linha (inline) usado para aplicar styles ou scripts a partes específicas de um texto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;p&gt;Este texto possui uma palavra &lt;span style="color:red;"&gt;vermelha&lt;/span&gt;.&lt;/p&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;p&gt;</code>: Define um parágrafo de texto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;p&gt;Este é o primeiro parágrafo de conteúdo.&lt;/p&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;h1&gt; a &lt;h6&gt;</code>: Títulos e subtítulos da página, onde h1 é o mais importante e h6 o de menor importância.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;h1&gt;Título Principal (SEO Principal)&lt;/h1&gt;
+&lt;h2&gt;Subtítulo Importante&lt;/h2&gt;
+&lt;h3&gt;Sub-seção menor&lt;/h3&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;hr&gt;</code>: Cria uma quebra temática ou uma linha horizontal divisória.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;p&gt;Assunto de cima&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Novo assunto de baixo&lt;/p&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;br&gt;</code>: Produz uma quebra de linha simples no texto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Primeira Linha.&lt;br&gt;Segunda Linha logo abaixo.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;pre&gt;</code>: Exibe o texto exatamente como foi digitado no código, preservando espaços em branco e quebras de linha.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;pre&gt;
+    Espaçado
+       com recuo manual.
+&lt;/pre&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;blockquote&gt;</code>: Usada para indicar uma citação longa de outra fonte, geralmente recuada.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;blockquote cite="https://site.com"&gt;
+  "O único modo de fazer um bom trabalho é amar o que você faz."
+&lt;/blockquote&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>4. Listas</h2>
+                <ul>
+                    <li>
+                        <code>&lt;ul&gt;</code>: Define uma lista não ordenada (geralmente com marcadores de bolinha).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;ul&gt;
+  &lt;li&gt;Maçã&lt;/li&gt;
+  &lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;ol&gt;</code>: Define uma lista ordenada (numerada ou sequencial).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;ol&gt;
+  &lt;li&gt;Primeiro Passo&lt;/li&gt;
+  &lt;li&gt;Segundo Passo&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;li&gt;</code>: Define um item de uma lista (usado dentro de ul ou ol).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;li&gt;Item avulso (requer ul ou ol externo)&lt;/li&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;dl&gt;</code>: Define uma lista de descrição (termos e suas respectivas descrições).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;dl&gt;
+  &lt;dt&gt;Café&lt;/dt&gt;
+  &lt;dd&gt;Bebida preta quente feita de grãos torrados.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;dt&gt;</code>: Define o termo a ser descrito dentro de uma lista de descrição (dl).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;dt&gt;HTML&lt;/dt&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;dd&gt;</code>: Define a descrição ou definição do termo anterior (dt).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;dd&gt;Linguagem de marcação de hipertexto.&lt;/dd&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>5. Semântica de Texto (Formatação Interna)</h2>
+                <ul>
+                    <li>
+                        <code>&lt;a&gt;</code>: Cria um hiperlink para outras páginas, arquivos ou seções da mesma página utilizando o atributo href.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;a href="https://www.google.com" target="_blank"&gt;Ir para o Google&lt;/a&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;strong&gt;</code>: Indica que o texto tem forte importância ou urgência. Por padrão, o navegador o exibe em negrito.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Atenção: Esse campo é &lt;strong&gt;obrigatório&lt;/strong&gt;!</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;em&gt;</code>: Enfatiza uma palavra ou trecho, mudando o sentido da frase. Por padrão, o navegador o exibe em itálico.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Eu &lt;em&gt;realmente&lt;/em&gt; preciso terminar isso hoje.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;small&gt;</code>: Representa comentários laterais ou "letras miúdas" (como avisos legais ou direitos autorais).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;p&gt;Preço: R$ 10,00 &lt;small&gt;(Sujeito a taxas locais)&lt;/small&gt;&lt;/p&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;s&gt;</code>: Indica que o texto não é mais correto, relevante ou preciso (renderiza um risco no meio do texto).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>De &lt;s&gt;R$ 99,00&lt;/s&gt; por apenas R$ 49,00!</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;cite&gt;</code>: Define o título de uma obra de arte, livro, música ou filme que está sendo citado.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Estou lendo &lt;cite&gt;Dom Casmurro&lt;/cite&gt; de Machado de Assis.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;q&gt;</code>: Usada para citações textuais curtas em linha (o navegador adiciona as aspas automaticamente).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Ele olhou para trás e disse: &lt;q&gt;Estou voltando em breve&lt;/q&gt;.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;dfn&gt;</code>: Indica o termo que está sendo definido dentro do contexto do texto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>O &lt;dfn&gt;CSS&lt;/dfn&gt; é uma linguagem de estilo utilizada para páginas web.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;abbr&gt;</code>: Define uma abreviação ou sigla (o atributo title mostra a definição ao passar o mouse).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>A &lt;abbr title="Organização das Nações Unidas"&gt;ONU&lt;/abbr&gt; declarou paz.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;data&gt;</code>: Associa um conteúdo legível por humanos a um valor legível por máquinas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Temos a &lt;data value="P-103"&gt;Camiseta Preta&lt;/data&gt; em estoque.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;time&gt;</code>: Representa uma data ou hora específica no calendário.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>O concerto começa às &lt;time datetime="20:00"&gt;20h&lt;/time&gt; do dia &lt;time datetime="2026-07-07"&gt;07 de julho&lt;/time&gt;.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;code&gt;</code>: Usada para exibir fragmentos de código de computador.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Use a função &lt;code&gt;querySelector()&lt;/code&gt; do JavaScript.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;var&gt;</code>: Define uma variável em uma expressão matemática ou de programação.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Na equação &lt;var&gt;x&lt;/var&gt; + 5 = 10, o valor de &lt;var&gt;x&lt;/var&gt; é 5.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;samp&gt;</code>: Representa a saída (output) de um programa de computador ou sistema.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>O terminal retornou: &lt;samp&gt;Error 404: Not Found&lt;/samp&gt;.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;kbd&gt;</code>: Indica uma entrada do usuário, geralmente teclas do teclado.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Pressione &lt;kbd&gt;Ctrl&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt; para copiar.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;sub&gt;</code>: Formata o texto como subscrito (abaixo da linha).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>A fórmula molecular da água é H&lt;sub&gt;2&lt;/sub&gt;O.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;sup&gt;</code>: Formata o texto como sobrescrito (acima da linha).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>A equação de Einstein é E = mc&lt;sup&gt;2&lt;/sup&gt;.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;i&gt;</code>: Usada para termos técnicos, pensamentos ou palavras em outros idiomas (renderiza em itálico).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>O termo &lt;i&gt;Homo sapiens&lt;/i&gt; refere-se à espécie humana.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;b&gt;</code>: Usada para chamar atenção para o texto sem dar importância extra (renderiza em negrito).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>As primeiras palavras do parágrafo estão em &lt;b&gt;destaque visual&lt;/b&gt;.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;u&gt;</code>: Renderiza o texto com uma linha sublinhada.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Esse texto contém um erro de &lt;u&gt;ortografia&lt;/u&gt;.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;mark&gt;</code>: Destaca ou realça um texto (efeito de caneta marca-texto).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Informação extremamente &lt;mark&gt;importante&lt;/mark&gt; para a prova.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;ruby&gt;</code>, <code>&lt;rt&gt;</code>, <code>&lt;rp&gt;</code>: Usada para exibir anotações tipográficas (pronúncias) em caracteres orientais.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;ruby&gt;
+  漢 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;kan&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;
+&lt;/ruby&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;bdi&gt;</code>: Isola um trecho de texto que pode estar formatado em uma direção de leitura diferente (útil em textos bi-direcionais como Árabe).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Nome do Usuário: &lt;bdi&gt;إيان&lt;/bdi&gt; - Postado há 5 minutos.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;bdo&gt;</code>: Força a direção de renderização do texto de forma explícita.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;bdo dir="rtl"&gt;Este texto será lido de trás para frente.&lt;/bdo&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;ins&gt;</code>: Representa um texto que foi inserido/adicionado ao documento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>O preço do plano atual é de &lt;ins&gt;R$ 29,90/mês&lt;/ins&gt;.</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;del&gt;</code>: Representa um texto que foi deletado/removido do documento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>O preço antigo era de &lt;del&gt;R$ 49,90/mês&lt;/del&gt;.</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>6. Elementos Multimídia</h2>
+                <ul>
+                    <li>
+                        <code>&lt;img&gt;</code>: Incorpora uma imagem na página através do atributo src.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;img src="foto.jpg" alt="Foto da paisagem das montanhas no inverno" width="400"&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;iframe&gt;</code>: Incorpora uma outra página HTML dentro da página atual.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;iframe src="https://maps.google.com" width="600" height="400"&gt;&lt;/iframe&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;embed&gt;</code>: Contêiner para integração de aplicações externas ou conteúdos interativos de terceiros.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;embed type="video/webm" src="animacao.webm" width="300" height="200"&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;object&gt;</code>: Um contêiner genérico para recursos externos (como plugins, PDFs ou imagens).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;object data="manual.pdf" type="application/pdf" width="100%" height="500px"&gt;
+  &lt;p&gt;Seu navegador não suporta a visualização nativa de PDFs.&lt;/p&gt;
+&lt;/object&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;param&gt;</code>: Define parâmetros adicionais para a tag object.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;object data="jogo.swf"&gt;
+  &lt;param name="autoplay" value="true"&gt;
+&lt;/object&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;video&gt;</code>: Incorpora um reprodutor de vídeo nativo na página.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;video controls width="500"&gt;
+  &lt;source src="filme.mp4" type="video/mp4"&gt;
+  Seu navegador não suporta vídeos HTML5.
+&lt;/video&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;audio&gt;</code>: Incorpora um reprodutor de áudio nativo na página.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;audio controls&gt;
+  &lt;source src="musica.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;source&gt;</code>: Especifica múltiplos recursos de mídia para as tags video, audio ou picture.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;source src="audio.ogg" type="audio/ogg"&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;track&gt;</code>: Define faixas de texto cronometradas (como legendas) para vídeos ou áudios.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;video src="video.mp4" controls&gt;
+  &lt;track src="legendas_pt.vtt" kind="subtitles" srclang="pt" label="Português" default&gt;
+&lt;/video&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;picture&gt;</code>: Permite oferecer diferentes versões de uma imagem dependendo do tamanho da tela.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;picture&gt;
+  &lt;source media="(min-width: 800px)" srcset="banner-grande.jpg"&gt;
+  &lt;source media="(min-width: 450px)" srcset="banner-medio.jpg"&gt;
+  &lt;img src="banner-celular.jpg" alt="Banner Responsivo"&gt;
+&lt;/picture&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;canvas&gt;</code>: Cria uma área gráfica onde desenhos e animações podem ser renderizados via JavaScript.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;canvas id="quadroDesenho" width="200" height="200"&gt;&lt;/canvas&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;svg&gt;</code>: Usado para desenhar gráficos vetoriais diretamente no HTML.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;svg width="100" height="100"&gt;
+  &lt;circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" /&gt;
+&lt;/svg&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;map&gt;</code> e <code>&lt;area&gt;</code>: Define um mapa de imagem interativo com regiões mapeadas clicáveis.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;img src="mapa.jpg" usemap="#meumap"&gt;
+&lt;map name="meumap"&gt;
+  &lt;area shape="rect" coords="0,0,50,50" alt="Botão Quadrado" href="link1.html"&gt;
+&lt;/map&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>7. Tabelas</h2>
+                <ul>
+                    <li>
+                        <code>&lt;table&gt;</code>: Declara e envolve uma tabela de dados.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;table border="1"&gt;
+  &lt;!-- Estrutura interna de linhas e colunas --&gt;
+&lt;/table&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;caption&gt;</code>: Define o título ou legenda da tabela.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;caption&gt;Tabela de Preços e Modelos&lt;/caption&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code>: Setores de divisão lógica (Cabeçalho, Corpo e Rodapé da tabela).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;table&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Produto&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Teclado&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;tfoot&gt;&lt;tr&gt;&lt;td&gt;Total: 1&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;td&gt;</code>: Linha (row), Célula de Cabeçalho (Header cell) e Célula Comum de Dados (Data cell).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;tr&gt;
+  &lt;th&gt;Coluna Título&lt;/th&gt;
+  &lt;td&gt;Dado da Célula&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;colgroup&gt;</code> e <code>&lt;col&gt;</code>: Agrupa colunas para aplicar estilos estruturais de uma só vez.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;colgroup&gt;
+  &lt;col span="2" style="background-color: #f2f2f2"&gt;
+&lt;/colgroup&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>8. Formulários e Interatividade</h2>
+                <ul>
+                    <li>
+                        <code>&lt;form&gt;</code>: Define um formulário para coleta de dados enviados pelo usuário.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;form action="/processar_cadastro" method="POST"&gt;
+  &lt;!-- Campos de entrada entram aqui --&gt;
+&lt;/form&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;label&gt;</code>: Cria uma etiqueta de texto vinculada a um elemento específico do formulário.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;label for="emailUsuario"&gt;E-mail:&lt;/label&gt;
+&lt;input type="email" id="emailUsuario"&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;input&gt;</code>: Cria campos variados de entrada de dados (texto, senhas, e-mails, botões).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;input type="text" placeholder="Nome Completo"&gt;
+&lt;input type="password" placeholder="Sua Senha"&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;button&gt;</code>: Cria um botão clicável para submissão ou ações na página.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;button type="submit"&gt;Salvar Cadastro&lt;/button&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;select&gt;</code>, <code>&lt;optgroup&gt;</code>, <code>&lt;option&gt;</code>: Cria menus dropdown estruturados e selecionáveis.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;select name="carros"&gt;
+  &lt;optgroup label="Nacionais"&gt;
+    &lt;option value="gol"&gt;Gol&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;textarea&gt;</code>: Cria uma caixa de digitação longa de múltiplas linhas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;textarea name="mensagem" rows="4" cols="40"&gt;Deixe sua opinião...&lt;/textarea&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;fieldset&gt;</code> e <code>&lt;legend&gt;</code>: Agrupa visualmente blocos de inputs semelhantes e define um cabeçalho.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Endereço de Entrega&lt;/legend&gt;
+  &lt;input type="text" placeholder="CEP"&gt;
+&lt;/fieldset&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;datalist&gt;</code>: Cria uma lista interna de auto-sugestões vinculada a um campo `input`.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;input list="navegadores"&gt;
+&lt;datalist id="navegadores"&gt;
+  &lt;option value="Chrome"&gt;
+  &lt;option value="Firefox"&gt;
+&lt;/datalist&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;output&gt;</code>: Mostra o resultado visível direto de um cálculo de script efetuado.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;output name="resultadoCalculo"&gt;100&lt;/output&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;progress&gt;</code>: Exibe uma barra nativa de progresso de download/upload.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;progress value="70" max="100"&gt;70%&lt;/progress&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;meter&gt;</code>: Exibe de forma gráfica uma medida escalar estática dentro de uma escala de intervalo sabida.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Uso de Disco: &lt;meter value="0.6"&gt;60%&lt;/meter&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>9. Elementos Interativos Dinâmicos</h2>
+                <ul>
+                    <li>
+                        <code>&lt;details&gt;</code> e <code>&lt;summary&gt;</code>: Cria um elemento retrátil (como este próprio menu expansível!).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;details&gt;
+  &lt;summary&gt;Clique para expandir&lt;/summary&gt;
+  &lt;p&gt;Surpresa! Texto revelado com sucesso.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;dialog&gt;</code>: Janela modal ou caixa de diálogo nativa do navegador.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;dialog open&gt;
+  &lt;p&gt;Esta é uma janela de alerta importante!&lt;/p&gt;
+&lt;/dialog&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;template&gt;</code>: Guarda pedaços ocultos de marcação HTML que serão clonados e exibidos unicamente via código JS.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;template id="molde-linha"&gt;
+  &lt;div class="linha-dinamica"&gt;Nova Info&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>&lt;slot&gt;</code>: Marcador de posição usado em Web Components (Shadow DOM) para injeção de conteúdos externos customizados.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>&lt;slot name="titulo-componente"&gt;Título Padrão&lt;/slot&gt;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+    </body>
+</html>
