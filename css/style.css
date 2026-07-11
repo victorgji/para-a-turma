@@ -64,6 +64,6 @@ footer {
 }
 @media (max-width: 768px) {
   .card-horizontal {
-    width: 100%;
+    width: calc(100%)
   }
 }
