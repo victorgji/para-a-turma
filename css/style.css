@@ -62,3 +62,8 @@ footer {
     padding: 20px;
     text-align: center;
 }
+@media (max-width: 768px) {
+  .card-horizontal {
+    width: 100%;
+  }
+}
