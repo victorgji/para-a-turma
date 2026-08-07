@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS3: Regras e Propriedades</title>
+        <link rel="stylesheet" href="../css/linguagens.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>CSS3: Regras e Propriedades</h1>
+        </header>
+
+        <main>
+
+            <section>
+                <h2>Sintaxe Básica</h2>
+                <hr>
+                <h3><strong>css</strong></h3>
+                <pre><code>seletor {
+    propriedade: valor;
+    outra-propriedade: valor;
+}</code></pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>1. Regras, Seletores e Diretivas (@rules)</h2>
+                <ul>
+                    <li>
+                        <code>Seletores Básicos (Elemento, Classe e ID)</code>: Selecionam elementos pelo nome da tag, por classe (<code>.</code>) ou por ID único (<code>#</code>).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>/* Elemento */
+p { color: #333; }
+
+/* Classe */
+.cartao { background-color: #fff; }
+
+/* ID */
+#menu-principal { display: flex; }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Combinadores (Descendente, Filho, Adjacente)</code>: Definem relações entre elementos na hierarquia HTML.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>/* Descendente */
+main p { line-height: 1.5; }
+
+/* Filho Direto (Child) */
+ul > li { list-style: none; }
+
+/* Irmão Adjacente */
+h2 + p { margin-top: 0; }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Pseudoclasses (:hover, :focus, :nth-child)</code>: Aplicam estilos com base no estado do elemento ou na sua posição estrutural.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>a:hover { text-decoration: underline; }
+input:focus { border-color: #007bff; }
+li:nth-child(even) { background-color: #f2f2f2; }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Pseudoelementos (::before, ::after)</code>: Permitem inserir e estilizar conteúdo fictício antes ou depois do conteúdo real.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.obrigatorio::after {
+  content: " *";
+  color: red;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>@media</code>: Regra at-rule usada para criar design responsivo com Media Queries.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>@keyframes</code>: Define as etapas e fotogramas para animações complexas em CSS.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>@keyframes surgir {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>@import</code>: Importa folhas de estilo externas ou fontes dentro do próprio arquivo CSS.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>@font-face</code>: Permite carregar e utilizar fontes personalizadas locais/hospedadas no servidor.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>@font-face {
+  font-family: 'MinhaFonte';
+  src: url('fonts/minha-fonte.woff2') format('woff2');
+}</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>2. Propriedades de Modelo de Caixa (Box Model) e Display</h2>
+                <ul>
+                    <li>
+                        <code>display</code>: Controla o tipo de renderização do elemento na tela (block, inline, flex, grid, etc.).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.bloco { display: block; }
+.inline { display: inline-block; }
+.escondido { display: none; }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>width</code> e <code>height</code>: Definem a largura e a altura do elemento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.caixa {
+  width: 100%;
+  max-width: 1200px;
+  height: 300px;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>margin</code>: Controla o espaçamento externo do elemento em relação aos vizinhos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.cartao {
+  margin: 20px auto; /* 20px acima/abaixo, centralizado nas laterais */
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>padding</code>: Controla o espaçamento interno entre a borda do elemento e seu conteúdo.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.botao {
+  padding: 10px 20px;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>box-sizing</code>: Define como a largura e altura totais são calculadas (incluindo ou não padding e border).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>* {
+  box-sizing: border-box; /* Garante que padding não aumente o tamanho total */
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>border</code> e <code>border-radius</code>: Estiliza a borda e o arredondamento dos cantos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.caixa-destaque {
+  border: 2px solid #007bff;
+  border-radius: 8px;
+}</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>3. Propriedades de Cores e Fundos</h2>
+                <ul>
+                    <li>
+                        <code>color</code>: Define a cor do texto do elemento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>h1 { color: #1a1a1a; }
+p { color: rgba(0, 0, 0, 0.8); }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>background-color</code>: Define a cor de fundo do elemento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>body { background-color: #f8f9fa; }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>background-image</code>: Aplica uma imagem ou gradiente como fundo.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.hero {
+  background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>background-size</code> e <code>background-position</code>: Ajustam o tamanho e o posicionamento da imagem de fundo.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.banner {
+  background-image: url('fundo.jpg');
+  background-size: cover;
+  background-position: center;
+}</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>4. Propriedades de Tipografia e Texto</h2>
+                <ul>
+                    <li>
+                        <code>font-family</code>: Especifica a família da fonte a ser utilizada.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>body {
+  font-family: 'Roboto', Arial, sans-serif;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>font-size</code> e <code>font-weight</code>: Define o tamanho e a espessura/peso do texto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>text-align</code>: Alinha o texto horizontalmente (left, center, right, justify).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.titulo-central { text-align: center; }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>line-height</code> e <code>letter-spacing</code>: Controlam a altura da linha e o espaçamento entre caracteres.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>p {
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>text-decoration</code>: Controla o estilo decorativo do texto (como sublinhado ou risco).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>a { text-decoration: none; }
+.descontado { text-decoration: line-through; }</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>5. Layout: Flexbox e Grid</h2>
+                <ul>
+                    <li>
+                        <code>flex-direction</code>, <code>justify-content</code> e <code>align-items</code>: Controlam o fluxo e o alinhamento de itens no container Flexbox.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.container-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>flex-wrap</code> e <code>gap</code>: Permite que os itens dobrem de linha e define o espaçamento interno entre eles.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>grid-template-columns</code> e <code>grid-template-rows</code>: Define a estrutura de colunas e linhas no CSS Grid Layout.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>6. Posicionamento e Camadas</h2>
+                <ul>
+                    <li>
+                        <code>position</code>: Define a estratégia de posicionamento (static, relative, absolute, fixed, sticky).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.menu-fixo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>: Determina o deslocamento para elementos posicionados.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>z-index</code>: Controla a ordem de empilhamento vertical (profundidade) dos elementos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.modal {
+  position: fixed;
+  z-index: 9999;
+}</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>7. Animações, Transições e Efeitos Visuals</h2>
+                <ul>
+                    <li>
+                        <code>transition</code>: Cria uma animação suave entre mudanças de propriedades CSS (ex: no hover).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.botao {
+  background-color: #007bff;
+  transition: background-color 0.3s ease-in-out;
+}
+.botao:hover { background-color: #0056b3; }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>transform</code>: Aplica transformações 2D ou 3D (rotacionar, escalar, transladar).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.cartao:hover {
+  transform: translateY(-5px) scale(1.02);
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>animation</code>: Associa uma regra <code>@keyframes</code> ao elemento especificando duração e repetição.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.carregando {
+  animation: surgir 1s ease-in-out infinite alternate;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>box-shadow</code> e <code>text-shadow</code>: Adiciona efeitos de sombra a caixas ou textos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>opacity</code> e <code>filter</code>: Controla a transparência e aplica efeitos visuais (blur, grayscale, etc.).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>.foto-antiga {
+  opacity: 0.8;
+  filter: grayscale(100%);
+}</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+    </body>
+</html>
