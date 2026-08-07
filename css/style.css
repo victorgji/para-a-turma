@@ -28,7 +28,7 @@ header {
 .card-horizontal {
     display: flex;
     align-items: center;
-    width: calc(50% - 10px);
+    width: 100%
     background-color: #ffffff;
     border: 1px solid #000000;
     border-radius: 8px;
