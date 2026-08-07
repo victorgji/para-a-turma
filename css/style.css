@@ -17,7 +17,7 @@ header {
 
 .container-cards {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; 
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -29,6 +29,7 @@ header {
     display: flex;
     align-items: center;
     width: 100%;
+    flex: 1 1 100%; 
     background-color: #ffffff;
     border: 1px solid #000000;
     border-radius: 8px;
