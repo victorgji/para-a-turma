@@ -16,20 +16,19 @@ header {
 }
 
 .container-cards {
-    display: flex;
-    flex-direction: column; 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
-    flex: 1;
+    flex: 1; 
 }
 
 .card-horizontal {
     display: flex;
     align-items: center;
     width: 100%;
-    flex: 1 1 100%; 
     background-color: #ffffff;
     border: 1px solid #000000;
     border-radius: 8px;
@@ -63,8 +62,10 @@ footer {
     padding: 20px;
     text-align: center;
 }
+
 @media (max-width: 768px) {
-  .card-horizontal {
-    width: calc(100%)
-  }
+    .container-cards {
+        display: flex;
+        flex-direction: column;
+    }
 }

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Linguagem C: Guia Completo para Back-End</title>
+        <link rel="stylesheet" href="../css/linguagens.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Linguagem C: Guia Completo para Back-End</h1>
+        </header>
+
+        <main>
+
+            <section>
+                <h2>Estrutura Básica de um Servidor/Programa em C</h2>
+                <hr>
+                <h3><strong>estrutura basica</strong></h3>
+                <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char *argv[]) {
+    /* Ponto de entrada do programa */
+    printf("Servidor C inicializado.\n");
+    return 0;
+}</code></pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>1. Estrutura Básica e Compilação</h2>
+                <ul>
+                    <li>
+                        <code>#include</code>: Diretiva de pré-processador para incluir bibliotecas padrão do sistema ou arquivos de cabeçalho locais (.h).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>#include &lt;stdio.h&gt;
+#include "meu_header.h"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>main()</code>: Função principal onde a execução do programa em C é iniciada pelo sistema operacional.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>int main(int argc, char *argv[]) {
+    return 0;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>return</code>: Finaliza a execução da função atual e retorna um código de status para o chamador ou Sistema Operacional (0 indica sucesso).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>return EXIT_SUCCESS; /* 0 */</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>gcc / clang</code>: Comandos de terminal usados para compilar o código-fonte em um binário executável de alto desempenho.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>gcc -Wall -Wextra -O2 main.c -o servidor</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>2. Tipos de Dados e Modificadores</h2>
+                <ul>
+                    <li>
+                        <code>int</code>: Tipo de dado numérico inteiro (geralmente ocupa 4 bytes em arquiteturas de 32/64 bits).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>int porta = 8080;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>char</code>: Armazena um único caractere ou byte de informação.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>char metodo = 'G';</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>float</code> e <code>double</code>: Tipos de ponto flutuante para precisão simples (float) e dupla (double).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>float tempo_resposta_ms = 12.45f;
+double precisao_medicao = 0.000000012;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>void</code>: Indica um tipo nulo ou ausência de valor de retorno/parâmetro em funções e ponteiros genéricos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>void processar_requisicao(void *dados);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>size_t</code>: Tipo inteiro sem sinal usado especificamente para representar tamanhos em bytes e contagem de memória.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>size_t tamanho_buffer = 1024;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>unsigned</code> / <code>signed</code>: Modificadores para tipos inteiros que definem a presença ou ausência de sinal negativo.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>unsigned int conexoes_ativas = 500;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>const</code>: Declara uma variável como somente leitura, impedindo modificações posteriores no código.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const int MAX_CLIENTES = 1000;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>volatile</code>: Informa ao compilador que o valor da variável pode ser alterado por fatores externos (hardware, threads, sinais).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>volatile int servidor_rodando = 1;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>static</code>: Mantém o estado da variável entre chamadas de função ou limita o escopo ao próprio arquivo de tradução.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>static int contador_global_requisicoes = 0;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>3. Estruturas de Controle de Fluxo</h2>
+                <ul>
+                    <li>
+                        <code>if</code>, <code>else if</code>, <code>else</code>: Estruturas condicionais para desvio do fluxo de execução.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>if (status_code == 200) {
+    printf("OK");
+} else if (status_code == 404) {
+    printf("Not Found");
+} else {
+    printf("Erro Interno");
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>switch</code>, <code>case</code>, <code>default</code>: Seleção múltipla baseada em um valor inteiro ou enum.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>switch (metodo_http) {
+    case 1: printf("GET"); break;
+    case 2: printf("POST"); break;
+    default: printf("Desconhecido"); break;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>while</code>: Laço de repetição com verificação condicional no início.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>while (servidor_ativo) {
+    escutar_conexoes();
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>do ... while</code>: Laço de repetição garantindo pelo menos uma execução antes da validação da condição.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>do {
+    tentar_reconectar();
+} while (tentativas < 3);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>for</code>: Laço de repetição estruturado com inicialização, condição e incremento/decremento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>for (int i = 0; i < 100; i++) {
+    limpar_buffer(i);
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>break</code> e <code>continue</code>: Controles de fluxo para interromper abruptamente ou pular para a próxima iteração de um laço.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>for (int i = 0; i < 10; i++) {
+    if (i == 2) continue;
+    if (i == 5) break;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>goto</code>: Realiza um salto incondicional para um rótulo (label) no código. Muito útil para tratamento unificado de erros em C.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>if (erro) goto cleanup;
+
+cleanup:
+    free(buffer);
+    return -1;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>4. Ponteiros e Alocação Dinâmica de Memória</h2>
+                <ul>
+                    <li>
+                        <code>*</code> e <code>&</code>: Operadores de ponteiro. <code>*</code> desreferencia o ponteiro para acessar o valor, e <code>&</code> obtém o endereço de memória de uma variável.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>int valor = 42;
+int *ptr = &valor;
+printf("Valor: %d", *ptr);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>sizeof</code>: Operador em tempo de compilação que retorna o tamanho em bytes de um tipo de dado ou estrutura.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>size_t bytes = sizeof(int);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>malloc()</code>: Aloca dinamicamente um bloco contínuo de memória no Heap sem inicializar seus bytes.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>char *buffer = (char *) malloc(1024 * sizeof(char));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>calloc()</code>: Aloca memória dinâmica e inicializa automaticamente todos os bytes com zero.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>int *array = (int *) calloc(10, sizeof(int));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>realloc()</code>: Redimensiona o tamanho de um bloco de memória previamente alocado dinamicamente.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>buffer = (char *) realloc(buffer, 2048);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>free()</code>: Libera o bloco de memória dinâmica alocado anteriormente no Heap para evitar vazamentos de memória (memory leaks).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>free(buffer);
+buffer = NULL;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>5. Estruturas, Uniões e Tipos Customizados</h2>
+                <ul>
+                    <li>
+                        <code>struct</code>: Agrupa diferentes tipos de dados em uma única estrutura com layout contínuo em memória.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>struct Requisicao {
+    int id;
+    char path[256];
+};</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>typedef</code>: Cria aliases ou apelidos para novos ou existentes tipos de dados.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>typedef struct Requisicao HTTPRequest;
+HTTPRequest req;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>union</code>: Permite armazenar diferentes tipos de dados no mesmo local físico de memória (tamanho determinado pelo maior membro).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>union Payload {
+    int inteiro;
+    float decimal;
+    char texto[4];
+};</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>enum</code>: Conjunto de constantes inteiras nomeadas para legibilidade do código.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>typedef enum {
+    HTTP_GET,
+    HTTP_POST,
+    HTTP_DELETE
+} HTTPMethod;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>6. Manipulação de Strings e Memória</h2>
+                <ul>
+                    <li>
+                        <code>strlen()</code>: Calcula o comprimento de uma string C (excluindo o caractere nulo final '\0').
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>size_t tam = strlen("HEAD /index.html");</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>strcpy()</code> e <code>strncpy()</code>: Copia bytes de uma string de origem para um destino especificado de forma segura.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>char dest[50];
+strncpy(dest, "HTTP/1.1 200 OK", sizeof(dest) - 1);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>strcmp()</code> e <code>strncmp()</code>: Compara lexicograficamente duas strings byte a byte.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>if (strcmp(metodo, "POST") == 0) {
+    /* Processa POST */
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>strcat()</code> e <code>strncat()</code>: Concatena uma string no final de outra.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>char caminho[100] = "/var/www";
+strncat(caminho, "/index.html", sizeof(caminho) - strlen(caminho) - 1);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>memset()</code>: Preenche um bloco contínuo de memória com um valor constante específico (muito usado para zera buffers).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>char buffer[1024];
+memset(buffer, 0, sizeof(buffer));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>memcpy()</code> e <code>memmove()</code>: Copia blocos crus de memória de uma região para outra (memmove lida com sobreposição de memória).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>memcpy(destino, origem, tamanho_bytes);</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>7. Entrada, Saída e Manipulação de Arquivos</h2>
+                <ul>
+                    <li>
+                        <code>printf()</code> e <code>scanf()</code>: Funções padrão formatadas de saída no stdout e entrada no stdin.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>printf("Porta ativa: %d\n", porta);
+scanf("%d", &porta);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>snprintf()</code>: Formata e escreve uma string com limite seguro em um buffer especifico (previne buffer overflow).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>char res[128];
+snprintf(res, sizeof(res), "HTTP/1.1 %d OK\r\n\r\n", 200);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>fopen()</code> e <code>fclose()</code>: Abre e fecha um ponteiro para fluxo de arquivo no sistema de arquivos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>FILE *arq = fopen("log.txt", "a");
+/* uso */
+fclose(arq);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>fread()</code> e <code>fwrite()</code>: Lê ou escreve dados binários não formatados em arquivos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>size_t lidos = fread(buffer, 1, sizeof(buffer), arq);
+fwrite(buffer, 1, lidos, arq_saida);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>fprintf()</code> e <code>fscanf()</code>: Escreve ou lê dados formatados diretamente em fluxos de arquivos (incluindo stderr).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>fprintf(stderr, "Erro crítico ao inicializar socket.\n");</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>fseek()</code> e <code>ftell()</code>: Movimenta o ponteiro interno de posição do arquivo ou retorna sua posição atual em bytes.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>fseek(arq, 0, SEEK_END);
+long tam_arquivo = ftell(arq);</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>8. Diretivas do Pré-Processador</h2>
+                <ul>
+                    <li>
+                        <code>#define</code>: Define macros ou constantes simbólicas substituídas antes do processo de compilação real.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>#define BUFFER_SIZE 4096
+#define MIN(a,b) ((a) < (b) ? (a) : (b))</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>#ifdef</code>, <code>#ifndef</code>, <code>#endif</code>: Diretivas condicionais de compilação para inclusão/exclusão flexível de código.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>#ifndef MEU_HEADER_H
+#define MEU_HEADER_H
+/* Conteúdo do Header */
+#endif</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>#pragma</code>: Instruções específicas enviadas diretamente ao compilador do sistema.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>#pragma pack(push, 1) /* Evita padding de structs */</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>9. Sockets e Programação de Redes POSIX (Linux Back-End)</h2>
+                <ul>
+                    <li>
+                        <code>socket()</code>: Cria um novo ponto de comunicação de rede e retorna o descritor de arquivo do socket.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>int server_fd = socket(AF_INET, SOCK_STREAM, 0);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>bind()</code>: Associa o socket a um endereço IP e porta específicos na máquina do servidor.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>struct sockaddr_in addr;
+addr.sin_family = AF_INET;
+addr.sin_addr.s_addr = INADDR_ANY;
+addr.sin_port = htons(8080);
+bind(server_fd, (struct sockaddr *)&addr, sizeof(addr));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>listen()</code>: Coloca o socket no modo passivo de escuta para aguardar conexões de entrada de clientes.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>listen(server_fd, 10); /* Fila máxima de 10 conexões */</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>accept()</code>: Extrai a primeira conexão da fila e cria um novo socket para a comunicação com o cliente conectado.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>int client_fd = accept(server_fd, NULL, NULL);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>connect()</code>: Inicia a conexão de um socket de cliente com um servidor remoto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>connect(client_fd, (struct sockaddr *)&addr, sizeof(addr));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>send()</code> e <code>recv()</code>: Transmite e recebe mensagens por um socket ativo.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>send(client_fd, "HTTP/1.1 200 OK\r\n\r\n", 19, 0);
+recv(client_fd, buffer, sizeof(buffer), 0);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>close()</code>: Fecha um descritor de arquivo ativo (incluindo sockets de rede abertos).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>close(client_fd);
+close(server_fd);</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>10. Concorrência, Processos e Sinais POSIX</h2>
+                <ul>
+                    <li>
+                        <code>fork()</code>: Duplica o processo atual, criando um novo processo filho de execução independente.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>pid_t pid = fork();
+if (pid == 0) {
+    /* Processo filho */
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>pthread_create()</code> e <code>pthread_join()</code>: Cria e aguarda a finalização de uma nova Thread POSIX de execução leve.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>pthread_t thread_id;
+pthread_create(&thread_id, NULL, tratar_cliente, (void *)&client_fd);
+pthread_join(thread_id, NULL);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>pthread_mutex_init()</code>, <code>lock()</code>, <code>unlock()</code>: Gerencia exclusão mútua (mutex) para proteção de regiões críticas compartilhadas entre threads.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_lock(&lock);
+/* Modifica recurso compartilhado */
+pthread_mutex_unlock(&lock);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>signal()</code>: Registra manipuladores (handlers) para capturar interrupções e sinais do SO (como SIGINT do Ctrl+C).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>void tratar_sigint(int sig) {
+    printf("Encerrando servidor com segurança...\n");
+    exit(0);
+}
+signal(SIGINT, tratar_sigint);</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+    </body>
+</html>
