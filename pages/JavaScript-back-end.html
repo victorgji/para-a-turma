@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript Back-End & Base: Guia Completo</title>
+        <link rel="stylesheet" href="../css/linguagens.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>JavaScript Back-End & Base: Guia Completo</h1>
+        </header>
+
+        <main>
+
+            <section>
+                <h2>Sintaxe Básica e Execução (Node.js)</h2>
+                <hr>
+                <h3><strong>Estrutura de Código JS</strong></h3>
+                <pre><code>// Exemplo de script de servidor/execução no Node.js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Servidor JavaScript Back-End Rodando!');
+});
+
+server.listen(3000, () => {
+    console.log('Servidor ativo em http://localhost:3000');
+});</code></pre>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>1. Declaração de Variáveis e Tipos de Dados</h2>
+                <ul>
+                    <li>
+                        <code>const</code>: Declara uma constante de escopo de bloco. O valor não pode ser reatribuído.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const PORTA = 3000;
+// PORTA = 8080; // Gera TypeError</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>let</code>: Declara uma variável reatribuível com escopo de bloco local.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let contador = 0;
+contador += 1;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>var</code>: Declara uma variável com escopo de função ou global (legado/evitar em código moderno).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>var nome = 'Servidor';</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>typeof</code>: Operador unário que retorna uma string indicando o tipo do dado.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log(typeof 'Texto'); // "string"
+console.log(typeof 123);     // "number"
+console.log(typeof true);    // "boolean"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>instanceof</code>: Testa se a propriedade `prototype` de um construtor aparece em qualquer lugar na cadeia de protótipos de um objeto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const data = new Date();
+console.log(data instanceof Date); // true</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Tipos Primitivos</code>: `string`, `number`, `bigint`, `boolean`, `undefined`, `symbol`, `null`.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const texto = "Backend";
+const numero = 42;
+const bigIntNum = 9007199254740991n;
+const ativo = true;
+let indefinido;
+const idUnico = Symbol('id');
+const nulo = null;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>2. Operadores e Estruturas de Controle</h2>
+                <ul>
+                    <li>
+                        <code>if / else if / else</code>: Condicional base para desvio de fluxo no código.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const status = 200;
+if (status === 200) {
+    console.log('OK');
+} else if (status === 404) {
+    console.log('Não Encontrado');
+} else {
+    console.log('Erro de Servidor');
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>switch / case / break / default</code>: Avalia uma expressão, combinando o valor com cláusulas `case`.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const metodo = 'POST';
+switch (metodo) {
+    case 'GET':
+        console.log('Busca dados');
+        break;
+    case 'POST':
+        console.log('Cria dados');
+        break;
+    default:
+        console.log('Método não suportado');
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Operadores de Comparação e Lógicos</code>: `===` (estrito igual), `!==` (estrito diferente), `&&` (AND), `||` (OR), `??` (Nullish Coalescing).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const usuario = null;
+const nomeExibicao = usuario ?? 'Visitante'; // Usa valor padrão se for null/undefined
+if (status === 200 && ativo) {
+    // faz algo
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Operador Ternário (`? :`)</code>: Forma curta para expressão condicional.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const acesso = idade >= 18 ? 'Permitido' : 'Negado';</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Encadeamento Opcional (`?.`)</code>: Lê o valor de uma propriedade sem causar erro caso a referência seja `null` ou `undefined`.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const rua = usuario?.endereco?.rua;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>for / while / do...while</code>: Laços de repetição tradicionais.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>for (let i = 0; i < 5; i++) {
+    console.log(i);
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>for...in</code>: Intera sobre as propriedades enumeráveis de um objeto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const config = { host: 'localhost', port: 3000 };
+for (let chave in config) {
+    console.log(`${chave}: ${config[chave]}`);
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>for...of</code>: Intera sobre objetos iteráveis (Arrays, Maps, Sets, Strings).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const rotas = ['/users', '/products', '/auth'];
+for (let rota of rotas) {
+    console.log(rota);
+}</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>3. Funções, Escopo e ES6+</h2>
+                <ul>
+                    <li>
+                        <code>function</code>: Declaração tradicional de função.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>function somar(a, b = 0) {
+    return a + b;
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Arrow Function (`() => {}`)</code>: Sintaxe curta de função que compartilha o mesmo `this` do escopo delimitador.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const multiplicar = (a, b) => a * b;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Rest Parameter (`...args`) / Spread (`...`)</code>: Permite representar um número indefinido de argumentos como um array ou espalhar elementos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>function listar(...itens) {
+    return itens;
+}
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4]; // [1, 2, 3, 4]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Desestruturação (Destructuring)</code>: Extrai dados de arrays ou objetos em variáveis distintas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const req = { body: { nome: 'Ana' }, params: { id: 10 } };
+const { nome } = req.body;
+const { id } = req.params;</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>4. Métodos de Array</h2>
+                <ul>
+                    <li>
+                        <code>.push() / .pop()</code>: Adiciona ao final / Remove o último elemento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const nums = [1, 2];
+nums.push(3); // [1, 2, 3]
+nums.pop();   // [1, 2]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.shift() / .unshift()</code>: Remove o primeiro / Adiciona no início.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const lista = ['b', 'c'];
+lista.unshift('a'); // ['a', 'b', 'c']
+lista.shift();     // ['b', 'c']</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.map()</code>: Cria um novo array com os resultados da chamada de uma função para cada elemento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const idades = [10, 20, 30];
+const dobradas = idades.map(n => n * 2); // [20, 40, 60]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.filter()</code>: Cria um novo array com todos os elementos que passaram no teste da função.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const usuarios = [{ idade: 15 }, { idade: 22 }];
+const adultos = usuarios.filter(u => u.idade >= 18);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.reduce() / .reduceRight()</code>: Executa uma função redutora sobre cada elemento, resultando num único valor.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const precos = [10, 20, 30];
+const total = precos.reduce((acc, curr) => acc + curr, 0); // 60</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.forEach()</code>: Executa uma dada função em cada elemento do array.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>['a', 'b'].forEach(item => console.log(item));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.find() / .findIndex()</code>: Retorna o primeiro elemento (ou seu índice) que satisfaz a função de teste.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const lista = [{ id: 1 }, { id: 2 }];
+const item = lista.find(o => o.id === 2); // { id: 2 }
+const idx = lista.findIndex(o => o.id === 2); // 1</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.includes() / .indexOf() / .lastIndexOf()</code>: Verifica presença ou posição de elementos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const arr = ['a', 'b', 'c'];
+console.log(arr.includes('b')); // true
+console.log(arr.indexOf('c'));   // 2</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.slice() / .splice()</code>: Corta o array (sem alterar original) / Altera o conteúdo de um array removendo/substituindo elementos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const letras = ['a', 'b', 'c', 'd'];
+const sub = letras.slice(1, 3); // ['b', 'c']
+letras.splice(1, 1, 'x');       // altera letras para ['a', 'x', 'c', 'd']</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.some() / .every()</code>: Testa se ao menos um / todos os elementos passam no teste.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const nums = [1, 2, 3];
+const temPar = nums.some(n => n % 2 === 0);  // true
+const todosPares = nums.every(n => n % 2 === 0); // false</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.flat() / .flatMap()</code>: Achata arrays aninhados.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const matriz = [1, [2, [3]]];
+console.log(matriz.flat(2)); // [1, 2, 3]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.sort() / .reverse()</code>: Ordena / Inverte a ordem dos elementos de um array no local (in-place).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const ordem = [3, 1, 2].sort((a, b) => a - b); // [1, 2, 3]
+ordem.reverse(); // [3, 2, 1]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.join() / .concat()</code>: Junta elementos em string / Concatena dois ou mais arrays.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const csv = ['usr', 'admin', 'root'].join(';'); // "usr;admin;root"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.at() / .fill()</code>: Acessa por índice (aceita negativos) / Preenche elementos com valor estático.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const arr = [10, 20, 30];
+console.log(arr.at(-1)); // 30
+console.log(new Array(3).fill(0)); // [0, 0, 0]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Array.isArray() / Array.from()</code>: Métodos estáticos de validação e criação.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log(Array.isArray([1, 2])); // true
+const letras = Array.from('JS'); // ['J', 'S']</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>5. Métodos de String</h2>
+                <ul>
+                    <li>
+                        <code>.length</code>: Propriedade que indica o comprimento da string.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log("NodeJS".length); // 6</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.trim() / .trimStart() / .trimEnd()</code>: Remove espaços em branco das extremidades.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const texto = "  código  ".trim(); // "código"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.toLowerCase() / .toUpperCase()</code>: Converte para minúsculas ou maiúsculas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log('API'.toLowerCase()); // "api"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.includes() / .startsWith() / .endsWith()</code>: Verificações de busca dentro da string.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const url = '/api/v1/users';
+console.log(url.startsWith('/api')); // true
+console.log(url.includes('v1'));      // true</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.split()</code>: Divide uma String em um array de substrings.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const partes = '127.0.0.1'.split('.'); // ['127', '0', '0', '1']</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.replace() / .replaceAll()</code>: Substitui padrões usando string ou Expressões Regulares (RegEx).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const rota = '/user/:id'.replace(':id', '123'); // "/user/123"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.substring() / .slice()</code>: Extrai trechos da string.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const hash = 'sha256-abcdef'.slice(7); // "abcdef"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.padStart() / .padEnd()</code>: Preenche a string com outra até atingir determinado comprimento.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const cod = '5'.padStart(4, '0'); // "0005"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.charAt() / .charCodeAt()</code>: Retorna o caractere ou código UTF-16 na posição.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log('Backend'.charAt(0)); // "B"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.repeat()</code>: Retorna uma nova string contendo o número especificado de cópias da original.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log('='.repeat(5)); // "====="</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>6. Métodos de Objetos, Classes e Protótipos</h2>
+                <ul>
+                    <li>
+                        <code>Object.keys() / Object.values() / Object.entries()</code>: Extrai chaves, valores ou pares [chave, valor].
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const user = { name: 'Dev', role: 'Admin' };
+console.log(Object.keys(user));   // ['name', 'role']
+console.log(Object.values(user)); // ['Dev', 'Admin']
+console.log(Object.entries(user));// [['name', 'Dev'], ['role', 'Admin']]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Object.assign() / Object.fromEntries()</code>: Copia valores entre objetos ou converte pares chave-valor em objeto.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const destino = {};
+Object.assign(destino, { a: 1 }, { b: 2 }); // { a: 1, b: 2 }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Object.freeze() / Object.seal()</code>: Congela (impede qualquer alteração) ou sela (impede adições/remoções de propriedades).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const config = Object.freeze({ db: 'postgres' });
+// config.db = 'mysql'; // Silenciosamente falha ou gera erro no modo estrito</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>class / constructor / extends / super</code>: Programação Orientada a Objetos (POO).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>class Controller {
+    constructor(nome) {
+        this.nome = nome;
+    }
+}
+
+class UserController extends Controller {
+    constructor(nome, tabela) {
+        super(nome);
+        this.tabela = tabela;
+    }
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>static / get / set</code>: Métodos estáticos da classe e acessadores de propriedades.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>class Auth {
+    static autenticar() {
+        return true;
+    }
+    get token() {
+        return 'xyz123';
+    }
+}
+console.log(Auth.autenticar()); // true</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>7. Programação Assíncrona (Promises, Async/Await)</h2>
+                <ul>
+                    <li>
+                        <code>Promise</code>: Objeto representando a eventual conclusão ou falha de uma operação assíncrona.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const minhaPromise = new Promise((resolve, reject) => {
+    let sucesso = true;
+    if (sucesso) resolve('OK');
+    else reject('Erro');
+});</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>.then() / .catch() / .finally()</code>: Métodos de encadeamento de Promises.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>minhaPromise
+    .then(resultado => console.log(resultado))
+    .catch(erro => console.error(erro))
+    .finally(() => console.log('Finalizado'));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>async / await</code>: Açúcar sintático sobre Promises para escrever código assíncrono sequencial.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>async function buscarDados() {
+    try {
+        const resposta = await fetch('https://api.exemplo.com');
+        const dados = await resposta.json();
+        return dados;
+    } catch (err) {
+        console.error('Falha:', err);
+    }
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Promise.all() / Promise.allSettled()</code>: Executa múltiplas Promises em paralelo.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const p1 = Promise.resolve(10);
+const p2 = Promise.resolve(20);
+Promise.all([p1, p2]).then(res => console.log(res)); // [10, 20]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Promise.race() / Promise.any()</code>: Retorna a primeira Promise que resolver/rejeitar ou a primeira que resolver com sucesso.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Promise.race([p1, p2]).then(primeiro => console.log(primeiro));</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>8. Tratamento de Erros e Utilitários Globais</h2>
+                <ul>
+                    <li>
+                        <code>try / catch / finally / throw</code>: Bloco de captura e lançamento manual de exceções.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>try {
+    throw new Error('Falha no banco de dados');
+} catch (error) {
+    console.error(error.message);
+} finally {
+    console.log('Conexão encerrada.');
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>JSON.parse() / JSON.stringify()</code>: Converte String JSON para Objeto JS e vice-versa.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const obj = JSON.parse('{"id": 1}');
+const jsonStr = JSON.stringify(obj); // '{"id":1}'</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Math (Objeto Global)</code>: `.floor()`, `.ceil()`, `.round()`, `.random()`, `.max()`, `.min()`.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const aleatorio = Math.floor(Math.random() * 100);
+const maior = Math.max(10, 20, 30); // 30</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Date (Objeto de Data)</code>: Manipulação de tempo, timestamps `.getTime()`, `.toISOString()`, `Date.now()`.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const agora = Date.now(); // Timestamp em milissegundos
+const iso = new Date().toISOString(); // "2026-09-10T18:00:00.000Z"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>setTimeout() / clearTimeout() / setInterval() / clearInterval()</code>: Temporizadores globais de execução.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const timer = setTimeout(() => {
+    console.log('Executado após 1 segundo');
+}, 1000);
+clearTimeout(timer);</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>9. Sistema de Módulos (CommonJS vs ES Modules)</h2>
+                <ul>
+                    <li>
+                        <code>require() / module.exports / exports</code>: Sistema nativo de módulos do Node.js (CommonJS).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>// Exportando (math.js)
+module.exports = { somar: (a, b) => a + b };
+
+// Importando
+const math = require('./math');
+console.log(math.somar(2, 3));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>import / export / export default</code>: Sistema de módulos padrão do ECMAScript (ESM).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>// Exportando (helper.js)
+export const log = (msg) => console.log(msg);
+export default class App {}
+
+// Importando
+import App, { log } from './helper.js';</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>10. Módulos Nativos do Node.js para Back-End</h2>
+                <ul>
+                    <li>
+                        <code>process (Objeto Global Node)</code>: Interação com o processo de execução do Node.js (`process.env`, `process.exit()`, `process.argv`).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const porta = process.env.PORT || 3000;
+console.log('Argumentos da CLI:', process.argv);
+// process.exit(0); // Encerra o processo</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>path Module</code>: Manipulação e resolução segura de caminhos de arquivos (`path.join()`, `path.resolve()`, `path.extname()`).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const path = require('path');
+const caminhoAbsoluto = path.join(__dirname, 'uploads', 'foto.png');
+console.log(path.extname(caminhoAbsoluto)); // ".png"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>fs Module (File System)</code>: Leitura e escrita de arquivos no sistema operacional (`fs.readFile()`, `fs.writeFileSync()`, `fs.promises`).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const fs = require('fs/promises');
+
+async function lerArquivo() {
+    try {
+        const conteudo = await fs.readFile('config.json', 'utf-8');
+        console.log(conteudo);
+    } catch (err) {
+        console.error('Erro ao ler arquivo:', err);
+    }
+}</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>events Module (EventEmitter)</code>: Criação e manipulação de eventos customizados.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const EventEmitter = require('events');
+const meuEmissor = new EventEmitter();
+
+meuEmissor.on('pedidoCriado', (id) => {
+    console.log(`Notificar cliente do pedido ${id}`);
+});
+
+meuEmissor.emit('pedidoCriado', 1050);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>http / https Module</code>: Criação de servidores web e requisições HTTP nativas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const http = require('http');
+
+const server = http.createServer((req, res) => {
+    if (req.url === '/health' && req.method === 'GET') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ status: 'UP' }));
+    }
+});
+
+server.listen(8080);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>stream Module</code>: Manipulação eficiente de grande volume de dados em fluxo (ReadStream, WriteStream).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const fs = require('fs');
+const readStream = fs.createReadStream('arquivoGrande.log');
+const writeStream = fs.createWriteStream('copia.log');
+
+readStream.pipe(writeStream); // Copia os dados por chunks/pedaços</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>buffer Module</code>: Manipulação nativa de dados binários brutos na memória.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const buf = Buffer.from('Texto em UTF-8', 'utf-8');
+console.log(buf.toString('hex')); // Converte para representação Hexadecimal</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>11. Criptografia e Segurança (Módulo Nativo `crypto` e Utilitários)</h2>
+                <ul>
+                    <li>
+                        <code>crypto.createHash()</code>: Cria um objeto Hash para gerar resumos criptográficos unidirecionais (SHA-256, MD5, etc.).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const hash = crypto.createHash('sha256').update('minhaSenha123').digest('hex');
+console.log(hash);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>crypto.createHmac()</code>: Cria um HMAC (Código de Autenticação de Mensagem Baseado em Hash) usando uma chave secreta.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const hmac = crypto.createHmac('sha256', 'chaveSecretaServidor')
+                   .update('dadosDaMensagem')
+                   .digest('hex');
+console.log(hmac);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>crypto.randomBytes()</code>: Gera bytes aleatórios criptograficamente seguros (ideal para criação de salts, IVs e tokens de acesso).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const token = crypto.randomBytes(32).toString('hex');
+console.log(token);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>crypto.createCipheriv() / crypto.createDecipheriv()</code>: Criptografia e descriptografia simétrica reutilizável com chave e IV (ex: AES-256-GCM / CBC).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const chave = crypto.randomBytes(32);
+const iv = crypto.randomBytes(16);
+
+// Criptografar
+const cipher = crypto.createCipheriv('aes-256-cbc', chave, iv);
+let encriptado = cipher.update('Dado Secreto', 'utf8', 'hex');
+encriptado += cipher.final('hex');
+
+// Descriptografar
+const decipher = crypto.createDecipheriv('aes-256-cbc', chave, iv);
+let decriptado = decipher.update(encriptado, 'hex', 'utf8');
+decriptado += decipher.final('utf8');</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>crypto.scrypt() / crypto.pbkdf2()</code>: Funções de derivação de chave (KDF) resistentes a ataques de força bruta, ideais para senhas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const salt = crypto.randomBytes(16);
+
+crypto.scrypt('senhaDoUsuario', salt, 64, (err, derivedKey) => {
+    if (err) throw err;
+    console.log(derivedKey.toString('hex'));
+});</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>crypto.generateKeyPairSync()</code>: Gera pares de chaves assimétricas (Chave Pública e Privada - ex: RSA, ECC).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
+    modulusLength: 2048,
+});</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>crypto.timingSafeEqual()</code>: Compara dois buffers em tempo constante para evitar ataques de análise de tempo (Timing Attacks).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const bufA = Buffer.from('tokenInformado');
+const bufB = Buffer.from('tokenEsperado');
+const saoIguais = crypto.timingSafeEqual(bufA, bufB);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>crypto.subtle (Web Crypto API)</code>: API nativa padrão W3C para operações criptográficas assíncronas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const encoder = new TextEncoder();
+const data = encoder.encode('Texto Confidencial');
+const hashBuffer = await crypto.subtle.digest('SHA-256', data);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>bcrypt.hash() / bcrypt.compare()</code>: Algoritmo padrão de mercado para hashing e checagem segura de senhas (Pacote externo `bcrypt`).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const bcrypt = require('bcrypt');
+const hash = await bcrypt.hash('minhaSenha123', 10);
+const ehValido = await bcrypt.compare('minhaSenha123', hash); // true</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>jwt.sign() / jwt.verify()</code>: Assinatura e validação de tokens de autenticação JSON Web Token (Pacote externo `jsonwebtoken`).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const jwt = require('jsonwebtoken');
+const token = jwt.sign({ id: 1 }, 'minhaChaveSecreta', { expiresIn: '1h' });
+const payload = jwt.verify(token, 'minhaChaveSecreta');</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+    </body>
+</html>
