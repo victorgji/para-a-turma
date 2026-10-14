@@ -15,6 +15,10 @@
 
         <main>
 
+            <center>
+                <a class="bnt-voltar" href="../index.html">voltar</a>
+            </center>
+
             <section>
                 <h2>Sintaxe Básica e Execução (Node.js)</h2>
                 <hr>
@@ -30,43 +34,6 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => {
     console.log('Servidor ativo em http://localhost:3000');
 });</code></pre>
-            </section>
-
-            <hr>
-
-            <section>
-                <h2>Parâmetros de Requisição e Resposta (HTTP)</h2>
-                <ul>
-                    <li>
-                        <code>req / res</code>: São os objetos essenciais que representam a requisição recebida (request) e a resposta enviada (response). São utilizados em funções de callback para lidar com o ciclo de vida HTTP.
-                        <details>
-                            <summary>▶ Ver Exemplo</summary>
-                            <pre><code>const http = require('http');
-
-http.createServer((req, res) => {
-    res.end('Servidor recebendo requisições e enviando respostas!');
-}).listen(8080);</code></pre>
-                        </details>
-                    </li>
-                    <li>
-                        <code>res.writeHead() / res.end()</code>: O método `writeHead` envia o status e os cabeçalhos HTTP para o cliente. O método `end` sinaliza que a resposta foi concluída e entrega o conteúdo final.
-                        <details>
-                            <summary>▶ Ver Exemplo</summary>
-                            <pre><code>res.writeHead(200, { 'Content-Type': 'application/json' });
-res.end(JSON.stringify({ mensagem: 'Olá, Mundo!' }));</code></pre>
-                        </details>
-                    </li>
-                    <li>
-                        <code>req.url / req.method / req.body / req.params</code>: Propriedades nativas (ou injetadas por frameworks) que contêm informações vitais como a rota acessada, o verbo HTTP utilizado e os dados enviados pelo usuário.
-                        <details>
-                            <summary>▶ Ver Exemplo</summary>
-                            <pre><code>if (req.method === 'GET' && req.url === '/api/users') {
-    console.log('Cliente solicitou a lista de usuários.');
-    res.end('Retornando usuários...');
-}</code></pre>
-                        </details>
-                    </li>
-                </ul>
             </section>
 
             <hr>
@@ -811,7 +778,12 @@ console.log(hmac);</code></pre>
                         </details>
                     </li>
                     <li>
-                        <code>crypto.randomBytes()</code>: Gera bytes aleatórios criptograficamente seguros (ideal para criação de salts, IVs e tokens de</code></pre>
+                        <code>crypto.randomBytes()</code>: Gera bytes aleatórios criptograficamente seguros (ideal para criação de salts, IVs e tokens de acesso).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const crypto = require('crypto');
+const token = crypto.randomBytes(32).toString('hex');
+console.log(token);</code></pre>
                         </details>
                     </li>
                     <li>
@@ -894,11 +866,13 @@ const payload = jwt.verify(token, 'minhaChaveSecreta');</code></pre>
                         </details>
                     </li>
                 </ul>
-
             </section>
-        
-        </main>
-    
-    </body>
 
+            <center>
+                <a class="bnt-voltar" href="../index.html">voltar</a>
+            </center>
+
+        </main>
+
+    </body>
 </html>

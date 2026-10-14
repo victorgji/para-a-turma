@@ -64,3 +64,22 @@ pre code {
     padding: 0;
     color: inherit;
 }
+
+.bnt-voltar {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    font-size: large;
+    font-weight: bold;
+    color: #1e1e1e;
+    align-content: center;
+    text-decoration: none;
+    margin-top: 38px;
+    transition: background-color 0.3s;
+}
+.bnt-voltar:hover {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}

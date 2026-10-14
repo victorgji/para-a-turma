@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JavaScript para Front-End: Guia Definitivo e Completo</title>
+        <link rel="stylesheet" href="../css/linguagens.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>JavaScript para Front-End: Guia Definitivo e Completo</h1>
+            <p>Cobertura exaustiva de todas as palavras-chave, estruturas, tipos, DOM, assincronicidade e APIs web.</p>
+        </header>
+
+        <main>
+
+            <center>
+                <a class="bnt-voltar" href="../index.html">voltar</a>
+            </center>
+
+            <section>
+                <h2>1. Palavras-Chave, Variáveis e Declarações</h2>
+                <hr>
+                <ul>
+                    <li>
+                        <code>var</code>: Declara uma variável de escopo global ou de função, permitindo reatribuição e sofrendo <em>hoisting</em> (inicializada como <code>undefined</code>).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>var nome = "Maria";
+    var nome = "Ana"; // Permitido
+    console.log(nome);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>let</code>: Declara uma variável com escopo de bloco, permitindo reatribuição, mas sem sofrer hoisting acessível antes da declaração (ReferenceError).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let idade = 25;
+    idade = 26; // Permitido
+    // let idade = 30; // Erro de sintaxe (redeclaração)</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>const</code>: Declara uma constante com escopo de bloco cujo valor não pode ser reatribuído (o valor em si é imutável, mas objetos/arrays internos podem ter propriedades mutadas).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const PI = 3.14159;
+    // PI = 3.14; // Erro!
+    const usuario = { nome: "Carlos" };
+    usuario.nome = "Roberto"; // Permitido (mutação de propriedade)</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>function</code> / <code>return</code>: Define uma função tradicional e especifica o valor de retorno da execução.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>function somar(a, b) {
+        return a + b;
+    }
+    console.log(somar(2, 3)); // 5</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>class</code> / <code>constructor</code> / <code>extends</code> / <code>super</code>: Sintaxe de orientação a objetos baseada em protótipos para criação de classes e herança.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>class Animal {
+        constructor(nome) { this.nome = nome; }
+        falar() { return `${this.nome} emite som.`; }
+    }
+    class Cachorro extends Animal {
+        falar() { return `${this.nome} late.`; }
+    }
+    const dog = new Cachorro("Rex");
+    console.log(dog.falar());</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>this</code>: Palavra-chave contextual que aponta para o objeto que está executando o contexto atual.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const pessoa = {
+        nome: "Julia",
+        dizerNome() { return this.nome; }
+    };
+    console.log(pessoa.dizerNome()); // Julia</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>new</code>: Cria uma instância de um objeto construído por uma função construtora ou classe.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const dataAtual = new Date();
+    console.log(dataAtual.getFullYear());</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>delete</code>: Remove uma propriedade de um objeto ou um elemento de um array (deixando um espaço vazio/<code>undefined</code>).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const obj = { x: 1, y: 2 };
+    delete obj.x;
+    console.log(obj.x); // undefined</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>typeof</code> / <code>instanceof</code>: Operadores para verificar o tipo de dado de um operando ou se um objeto é instância de uma classe/construtor.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log(typeof 123); // "number"
+    console.log([] instanceof Array); // true</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>void</code>: Avalia a expressão fornecida e retorna <code>undefined</code>.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let resultado = void (5 + 5);
+    console.log(resultado); // undefined</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>debugger</code>: Aciona uma instrução de depuração, pausando a execução se houver ferramentas de desenvolvimento abertas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>function debugarCodigo() {
+        debugger; // Pausa aqui no browser
+    }</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>2. Tipos de Dados e Operadores</h2>
+                <hr>
+                <ul>
+                    <li>
+                        Tipos Primitivos (<code>String</code>, <code>Number</code>, <code>Boolean</code>, <code>Undefined</code>, <code>Null</code>, <code>Symbol</code>, <code>BigInt</code>): Valores imutáveis fundamentais.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let str = "Texto";
+    let num = 42;
+    let bool = true;
+    let indef = undefined;
+    let nulo = null;
+    let sym = Symbol("id");
+    let big = 9007199254740991n;</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Template Literals (<code>`...${}`</code>): Strings delimitadas por crases que permitem interpolação de variáveis e quebras de linha nativas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const nome = "Carlos";
+    console.log(`Olá, ${nome}! 
+    Seja bem-vindo.`);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Operadores Aritméticos (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>**</code>, <code>++</code>, <code>--</code>): Executam operações matemáticas e incrementos/decrementos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let exp = 2 ** 3; // 8 (potenciação)
+    let mod = 10 % 3; // 1 (resto da divisão)
+    let x = 5; x++; // x vira 6</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Operadores de Atribuição (<code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>??=</code>, etc.): Atribuem valores com operações combinadas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let total = 10;
+    total += 5; // total = 15
+    let config = null;
+    config ??= "padrao"; // Atribui se for null/undefined</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Operadores de Comparação e Igualdade (<code>==</code>, <code>===</code>, <code>!=</code>, <code>!==</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>): Comparam valores com ou sem coerção de tipo estrita.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log(5 == "5");  // true (compara valor)
+    console.log(5 === "5"); // false (compara valor e tipo)</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Operadores Lógicos (<code>&amp;&amp;</code>, <code>||</code>, <code>!</code>): Conectam expressões booleanas (E lógico, OU lógico, Negação).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let logado = true;
+    let admin = false;
+    console.log(logado && admin); // false
+    console.log(!logado); // false</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Nullish Coalescing (<code>??</code>) e Optional Chaining (<code>?.</code>): Retorna o operando direito se o esquerdo for <code>null</code>/<code>undefined</code>; o encadeamento opcional previne erros em propriedades nulas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const user = { perfil: { nome: "Ana" } };
+    console.log(user.endereco?.rua); // undefined (sem erro)
+    let valor = null ?? "Fallback"; // "Fallback"</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Operador Ternário (<code>condicao ? verdadeiro : falso</code>): Atalho condicional inline.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const idade = 18;
+    const status = idade >= 18 ? "Maior de idade" : "Menor de idade";</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Spread (<code>...</code>) e Destructuring (Desestruturação): Espalham elementos de iteráveis ou extraem propriedades de objetos e arrays facilmente.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const arr1 = [1, 2];
+    const arr2 = [...arr1, 3, 4]; // [1, 2, 3, 4]
+    const { nome } = { nome: "Lucas", idade: 30 };</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>3. Estruturas de Controle e Fluxo</h2>
+                <hr>
+                <ul>
+                    <li>
+                        <code>if</code> / <code>else if</code> / <code>else</code>: Condicionais tradicionais para desvios de fluxo baseados em expressões booleanas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let nota = 8;
+    if (nota >= 7) {
+        console.log("Aprovado");
+    } else {
+        console.log("Reprovado");
+    }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>switch</code> / <code>case</code> / <code>default</code> / <code>break</code>: Avalia uma expressão comparando com múltiplos valores de caso.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let dia = "Segunda";
+    switch (dia) {
+        case "Segunda": console.log("Início da semana"); break;
+        default: console.log("Outro dia");
+    }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>for</code> / <code>for...in</code> / <code>for...of</code>: Loops para iteração clássica de índices, chaves de objetos ou valores de iteráveis.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>for (let i = 0; i &lt; 3; i++) { console.log(i); }
+    const nums = [10, 20];
+    for (let val of nums) { console.log(val); }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>while</code> / <code>do...while</code>: Loops executados enquanto a condição for verdadeira (o segundo executa ao menos uma vez).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let contador = 0;
+    while (contador &lt; 2) {
+        console.log(contador);
+        contador++;
+    }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>break</code> / <code>continue</code> / <code>label</code>: Interrompem um loop inteiro ou pulam para a próxima iteração.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>for (let i = 0; i &lt; 5; i++) {
+        if (i === 2) continue; // Pula o 2
+        if (i === 4) break;    // Para no 4
+        console.log(i);
+    }</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>4. Funções, Escopo e Closures</h2>
+                <hr>
+                <ul>
+                    <li>
+                        Arrow Functions (<code>() =&gt; {}</code>): Sintaxe reduzida para funções, que preservam o escopo léxico do <code>this</code>.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const multiplicar = (a, b) =&gt; a * b;
+    console.log(multiplicar(3, 4)); // 12</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Parâmetros Rest (<code>...args</code>) e Parâmetros Padrão: Permitem receber argumentos indefinidos em um array ou definir valores default.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>function somarTudo(...numeros) {
+        return numeros.reduce((acc, n) =&gt; acc + n, 0);
+    }
+    console.log(somarTudo(1, 2, 3, 4)); // 10</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Closures: Função interna que retém o acesso ao escopo de sua função externa mesmo após esta ter retornado.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>function criarContador() {
+        let count = 0;
+        return () =&gt; ++count;
+    }
+    const incrementar = criarContador();
+    console.log(incrementar()); // 1
+    console.log(incrementar()); // 2</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        IIFE (Immediately Invoked Function Expression): Função executada imediatamente após sua definição.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>(function() {
+        console.log("Executado imediatamente!");
+    })();</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>5. Objetos Globais e Métodos Nativos (Math, Date, Array, String, JSON, Object)</h2>
+                <hr>
+                <ul>
+                    <li>
+                        <code>Array</code> (Métodos avançados: <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>find</code>, <code>some</code>, <code>every</code>, <code>flat</code>): Manipulação funcional de listas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const numeros = [1, 2, 3, 4];
+    const dobrados = numeros.map(n =&gt; n * 2);
+    const pares = numeros.filter(n =&gt; n % 2 === 0);
+    console.log(dobrados, pares);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>String</code> e <code>Number</code>: Métodos utilitários de manipulação de texto e conversão numérica.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>let texto = "  Frontend  ";
+    console.log(texto.trim().toUpperCase()); // "FRONTEND"
+    console.log(Number.parseInt("10px")); // 10</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Math</code> e <code>Date</code>: Objeto de operações matemáticas avançadas e manipulação de datas temporais.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>console.log(Math.floor(Math.random() * 10) + 1); // 1 a 10
+    const hoje = new Date();
+    console.log(hoje.toISOString());</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>JSON</code> (<code>JSON.stringify</code> / <code>JSON.parse</code>): Conversão entre objetos JavaScript e strings formato JSON.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const obj = { x: 10, y: "texto" };
+    const jsonString = JSON.stringify(obj);
+    const objetoRecuperado = JSON.parse(jsonString);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Object</code> (<code>keys</code>, <code>values</code>, <code>entries</code>, <code>assign</code>): Métodos estáticos para inspecionar e clonar objetos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const usuario = { nome: "Carla", idade: 28 };
+    console.log(Object.keys(usuario)); // ["nome", "idade"]
+    console.log(Object.entries(usuario)); // [["nome", "Carla"], ["idade", 28]]</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>6. Manipulação do DOM e Sistema de Eventos</h2>
+                <hr>
+                <ul>
+                    <li>
+                        Seleção de Elementos (<code>document.getElementById</code>, <code>querySelector</code>, <code>querySelectorAll</code>): Encontra nós na árvore do DOM.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const tituloPrincipal = document.querySelector("h1");
+    const itensLista = document.querySelectorAll("li");</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Modificação de Conteúdo e Atributos (<code>textContent</code>, <code>innerHTML</code>, <code>setAttribute</code>, <code>classList</code>): Altera dinamicamente a página.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const div = document.createElement("div");
+    div.textContent = "Olá Mundo";
+    div.classList.add("destaque", "visivel");
+    document.body.appendChild(div);</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>addEventListener</code> / <code>removeEventListener</code>: Registra ouvintes de eventos interativos do usuário (cliques, inputs, teclas).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const btn = document.querySelector("#meuBotao");
+    btn.addEventListener("click", (evento) =&gt; {
+        console.log("Botão clicado nas coordenadas:", evento.clientX, evento.clientY);
+    });</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Event Bubbling, Capturing e Event Delegation: Propagação de eventos na árvore DOM e delegação para elementos pais.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>document.body.addEventListener("click", (e) =&gt; {
+        if (e.target.matches("button")) {
+            console.log("Botão dinâmico acionado via delegação!");
+        }
+    });</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>7. Assincronicidade (Callbacks, Promises, Async/Await)</h2>
+                <hr>
+                <ul>
+                    <li>
+                        <code>setTimeout</code> e <code>setInterval</code>: Funções da Web API para agendamento de tarefas assíncronas no Event Loop.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const timerId = setTimeout(() =&gt; {
+        console.log("Executado após 2 segundos");
+    }, 2000);
+    clearTimeout(timerId); // Cancela o timer</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Promise</code> (<code>resolve</code>, <code>reject</code>, <code>then</code>, <code>catch</code>, <code>finally</code>): Representa a eventual conclusão ou falha de uma operação assíncrona.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>const promessa = new Promise((resolve, reject) =&gt; {
+        let sucesso = true;
+        if (sucesso) resolve("Dados carregados!");
+        else reject("Erro na operação.");
+    });
+    promessa.then(res =&gt; console.log(res)).catch(err =&gt; console.error(err));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>Promise.all</code>, <code>Promise.race</code>, <code>Promise.allSettled</code>, <code>Promise.any</code>: Métodos combinadores de múltiplas promessas simultâneas.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>Promise.all([
+        Promise.resolve("A"),
+        Promise.resolve("B")
+    ]).then(resultados =&gt; console.log(resultados)); // ["A", "B"]</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>async</code> / <code>await</code>: Sintaxe elegante construída sobre Promises para escrever código assíncrono que parece síncrono.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>async function buscarDados() {
+        try {
+            let resposta = await fetch("https://api.exemplo.com/dados");
+            let dados = await resposta.json();
+            console.log(dados);
+        } catch (erro) {
+            console.error("Falha ao buscar:", erro);
+        }
+    }
+    buscarDados();</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>8. Módulos, Tratamento de Erros e Programação Defensiva</h2>
+                <hr>
+                <ul>
+                    <li>
+                        <code>import</code> / <code>export</code> (Named &amp; Default): Sistema de módulos ES6 para modularização e reuso de código entre arquivos.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>// modulo.js
+    export const PI = 3.14;
+    export default function saudacao() { return "Olá"; }
+
+    // main.js
+    import saudacao, { PI } from './modulo.js';</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>try</code> / <code>catch</code> / <code>finally</code> / <code>throw</code>: Tratamento robusto de exceções em tempo de execução.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>function dividir(a, b) {
+        if (b === 0) throw new Error("Divisão por zero não permitida");
+        return a / b;
+    }
+    try {
+        dividir(10, 0);
+    } catch (e) {
+        console.error(e.message);
+    } finally {
+        console.log("Bloco final executado.");
+    }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        <code>use strict</code>: Modo estrito que ativa restrições severas de parsing e tratamento de erros silenciosos no JavaScript.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>"use strict";
+    // variavelGlobalNaoDeclarada = 10; // Erro imediato no strict mode</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>9. APIs do Navegador Relevantes para Front-End</h2>
+                <hr>
+                <ul>
+                    <li>
+                        Fetch API (<code>fetch()</code>): Interface nativa para requisições HTTP assíncronas via rede (GET, POST, PUT, DELETE).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response =&gt; response.json())
+        .then(json =&gt; console.log(json));</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Web Storage (<code>localStorage</code> / <code>sessionStorage</code>): Persistência de dados chave-valor no navegador do cliente.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>localStorage.setItem('usuario', 'Carlos');
+    let user = localStorage.getItem('usuario');
+    localStorage.removeItem('usuario');</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        Geolocation API (<code>navigator.geolocation</code>): Permite acessar a posição geográfica do usuário com permissão.
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(pos =&gt; {
+            console.log("Lat:", pos.coords.latitude, "Lon:", pos.coords.longitude);
+        });
+    }</code></pre>
+                        </details>
+                    </li>
+                    <li>
+                        History API (<code>history.pushState</code>, <code>history.replaceState</code>): Manipula o histórico de navegação do browser para Single Page Applications (SPAs).
+                        <details>
+                            <summary>▶ Ver Exemplo</summary>
+                            <pre><code>history.pushState({page: 1}, "Título", "/perfil");</code></pre>
+                        </details>
+                    </li>
+                </ul>
+            </section>
+
+            <center>
+                <a class="bnt-voltar" href="../index.html">voltar</a>
+            </center>
+
+        </main>
+
+    </body>
+</html>
